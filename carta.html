@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta en un Sobre</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe4e1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .sobre {
+            position: relative;
+            width: 600px;
+            height: 600px; /* Aumentamos la altura para que la carta ocupe toda la parte superior */
+            background-color: #ffffff;
+            border: 3px solid #e75480;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .tapa {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background-color: #ffffff;
+            border-radius: 10px 10px 0 0;
+            transition: transform 0.6s;
+            transform-origin: bottom center;
+            border-bottom: 3px solid #e75480;
+        }
+
+        /* "S" dorada grande en el centro del sobre */
+        .letra {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-family: 'Georgia', serif;
+            font-size: 80px;
+            font-weight: bold;
+            color: gold;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Contenido de la carta */
+        .contenido {
+            position: absolute;
+            top: 0; /* Ahora ocupa toda la altura del sobre */
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: transform 0.6s, opacity 0.6s;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            box-sizing: border-box;
+            border: 2px solid gold;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            overflow-y: auto; /* Permite el desplazamiento hacia arriba y hacia abajo */
+            max-height: 100%; /* Asegura que no se salga del límite del sobre */
+        }
+
+        .contenido .carta {
+            text-align: justify;
+            font-size: 20px;
+            line-height: 1.8;
+            color: #333;
+            font-family: 'Georgia', serif;
+            width: 90%;
+            min-height: 200%; /* Asegura que el contenido sea más largo que el contenedor */
+        }
+
+        .contenido .carta h1 {
+            color: #e75480;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .contenido .carta p {
+            margin-bottom: 15px;
+        }
+
+        /* Imagen dentro de la carta */
+        .contenido .carta img {
+            width: 30%;  /* Las imágenes serán más pequeñas (30% del contenedor) */
+            height: auto;
+            border-radius: 8px;
+            margin: 10px;
+        }
+
+        /* Contenedor de las imágenes en fila */
+        .imagenes-container {
+            display: flex;  /* Utiliza flexbox para mostrar las imágenes en fila */
+            justify-content: space-between;  /* Espacia las imágenes entre ellas */
+            margin-top: 20px;  /* Espacio entre el texto final y las imágenes */
+        }
+
+        .sobre.abierto .tapa {
+            transform: rotateX(-180deg);
+        }
+
+        .sobre.abierto .contenido {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="sobre" onclick="abrirSobre()">
+        <div class="tapa">
+            <div class="letra">S</div>
+        </div>
+        <div class="contenido">
+            <div class="carta">
+                <h1>Para ti mi estrella hermosa</h1>
+                <p>Lo siento si esto se ve muy feo...</p>
+                <p>
+                    Me alegra bastante que ps cumplamos 9 meses desde que retomamos todo en nuestra relación y aunque el camino últimamente no ha sido fácil
+                    y las peleas y lo que los dos estamos pasando personalmente no ayuda, siento que el amor sigue ahí aunque tengamos nuestras dudas.
+                </p>
+                <p>
+                    Con detalles tan mínimos que cada uno tiene con el otro y que muestra su forma de amar, como yo al tomar una foto para el recuerdo y
+                    ponerlo de fondo o subirlo a IG, como tú siempre prestando atención a lo que me sucede en el día, son cosas que para los dos valen mucho
+                    pero tal vez el otro no entienda.
+                </p>
+                <p>
+                    Viéndolo bien, si es verdad que los polos opuestos se atraen, y eso es lo que más me apasiona de lo nuestro: que somos tan contrarios,
+                    pero al mismo tiempo tan iguales.
+                </p>
+                <p>TE AMO mucho, Sara, lo siento si esta carta está fea, apenas estoy aprendiendo a programar JAJA. Además, yo sé que nadie en tu vida te hará estos detalles.</p>
+                <div class="firma">[ATT tu próximo ingeniero ]</div>
+                
+                <!-- Contenedor para las imágenes en fila -->
+                <div class="imagenes-container">
+                    <!-- Imagen 1 -->
+                    <img src="imagen1.jpg" alt="Imagen 1 de amor">
+                    <!-- Imagen 2 -->
+                    <img src="imagen2.jpg" alt="Imagen 2 de amor">
+                    <!-- Imagen 3 -->
+                    <img src="imagen3.jpg" alt="Imagen 3 de amor">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function abrirSobre() {
+            const sobre = document.querySelector('.sobre');
+            sobre.classList.toggle('abierto');
+        }
+    </script>
+</body>
+</html>
+
+
